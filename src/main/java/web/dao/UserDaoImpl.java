@@ -16,14 +16,14 @@ public class UserDaoImpl implements UserDao {
     private EntityManager em;
 
     @Override
-    public List<User> findAll() {
+    public List<User> findAllUser() {
         return em
                 .createQuery("select u from User u", User.class)
                 .getResultList();
     }
 
     @Override
-    public User findById(Long id) {
+    public User findByIdUser(Long id) {
         User user = em.find(User.class, id);
         if (user == null) {
             throw new EntityNotFoundException(
@@ -40,13 +40,12 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void updateUser(User user) {
-        findById(user.getId());
         em.merge(user);
     }
 
     @Override
-    public void deleteById(Long id) {
-        User user = findById(id);
+    public void deleteByIdUser(Long id) {
+        User user = findByIdUser(id);
         em.remove(user);
     }
 }

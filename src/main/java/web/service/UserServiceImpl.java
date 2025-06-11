@@ -8,7 +8,6 @@ import web.model.User;
 import java.util.List;
 
 @Service
-@Transactional
 public class UserServiceImpl implements UserService {
 
     private final UserDao userDao;
@@ -19,14 +18,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<User> findAll() {
-        return userDao.findAll();
+    public List<User> findAllUser() {
+        return userDao.findAllUser();
     }
 
     @Override
     @Transactional(readOnly = true)
-    public User findById(Long id) {
-        return userDao.findById(id);
+    public User findByIdUser(Long id) {
+        return userDao.findByIdUser(id);
     }
 
     @Override
@@ -42,7 +41,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Transactional
-    public void deleteById(Long id) {
-        userDao.deleteById(id);
+    public void deleteByIdUser(Long id) {
+        userDao.deleteByIdUser(id);
     }
 }

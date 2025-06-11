@@ -22,15 +22,15 @@ public class UsersController {
     }
 
  @GetMapping("/")
-    public String index(Model model) {
-       List<User> users = userService.findAll();
+    public String showUsers(Model model) {
+       List<User> users = userService.findAllUser();
         model.addAttribute("users", users);
         return "users";
     }
 
     @GetMapping(value = "/users")
     public String getAllUsers(Model model) {
-        List<User> users = userService.findAll();
+        List<User> users = userService.findAllUser();
         model.addAttribute("users", users);
         return "users";
     }
@@ -49,7 +49,7 @@ public class UsersController {
 
     @GetMapping(value = "/updateUser")
     public String updateUser(@RequestParam("id") long id, Model model) {
-        model.addAttribute("user", userService.findById(id));
+        model.addAttribute("user", userService.findByIdUser(id));
         return "updateUser";
     }
 
@@ -59,9 +59,9 @@ public class UsersController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/deleteUser")
+    @PostMapping(value = "/deleteUser")
     public String deleteUser(@RequestParam("id") long id) {
-        userService.deleteById(id);
+        userService.deleteByIdUser(id);
         return "redirect:/";
     }
 }
